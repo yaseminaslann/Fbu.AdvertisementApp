@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>6636d572-0e2f-416c-8dee-c52afff71202</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Contexts\" />
+    <None Remove="Configurations\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Repositories\" />
+    <None Remove="UnitOfWork\" />
+    <None Remove="Migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contexts\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="UnitOfWork\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Web.AdvertisementApp.Common\Web.AdvertisementApp.Common.csproj" />
+    <ProjectReference Include="..\Web.AdvertisementApp.Entities\Web.AdvertisementApp.Entities.csproj" />
+  </ItemGroup>
+</Project>
