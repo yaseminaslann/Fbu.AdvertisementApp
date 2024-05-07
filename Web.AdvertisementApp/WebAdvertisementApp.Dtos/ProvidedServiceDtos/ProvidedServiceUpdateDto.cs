@@ -7,7 +7,7 @@ using Web.AdvertisementApp.Dtos.Interfaces;
 
 namespace Web.AdvertisementApp.Dtos
 {
-    public class ProvidedServiceUpdateDto : IDto
+    public class ProvidedServiceUpdateDto : IUpdateDto
     {
         public int Id { get; set; }
 

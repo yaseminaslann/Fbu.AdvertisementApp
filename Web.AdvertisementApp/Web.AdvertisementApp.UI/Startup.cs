@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.AdvertisementApp.Business.DependencyResolvers.Microsoft;
-
+using Web.AdvertisementApp.Business.Helpers;
+using Web.AdvertisementApp.UI.Mappings.AutoMapper;
+using Web.AdvertisementApp.UI.Models;
+using Web.AdvertisementApp.UI.ValidationRules;
 
 namespace Web.AdvertisementApp.UI
 {
@@ -29,11 +33,23 @@ namespace Web.AdvertisementApp.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDependencies(Configuration);
+            services.AddTransient<IValidator<UserCreateModel>, UserCreateModelValidator>();
+            services.AddControllersWithViews();
 
+            var profiles = ProfileHelper.GetProfiles();
+
+            profiles.Add(new UserCreateModelProfile());
+
+            var configuration = new MapperConfiguration(opt =>
+            {
+                opt.AddProfiles(profiles);
+            });
+
+            var mapper = configuration.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,13 +57,13 @@ namespace Web.AdvertisementApp.UI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

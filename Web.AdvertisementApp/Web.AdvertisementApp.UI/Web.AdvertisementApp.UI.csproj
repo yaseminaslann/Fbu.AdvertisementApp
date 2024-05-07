@@ -18,4 +18,26 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\css\" />
+    <Content Remove="wwwroot\js\" />
+    <Content Remove="wwwroot\themes\startbootstrap-one-page-wonder-gh-pages\css\" />
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\themes\startbootstrap-one-page-wonder-gh-pages\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="ValidationRules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Extensions\" />
+    <None Remove="Models\" />
+    <None Remove="Views\Account\" />
+    <None Remove="ValidationRules\" />
+  </ItemGroup>
 </Project>
