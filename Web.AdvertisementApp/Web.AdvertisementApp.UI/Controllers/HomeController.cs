@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.AdvertisementApp.Business.Interfaces;
+using Web.AdvertisementApp.Business.Services;
 using Web.AdvertisementApp.UI.Extensions;
 
 namespace Web.AdvertisementApp.UI.Controllers
@@ -13,9 +14,10 @@ namespace Web.AdvertisementApp.UI.Controllers
         private readonly IProvidedServiceService _providedServiceService;
         private readonly IAdvertisementService _advertisementService;
 
-        public HomeController(IProvidedServiceService providedServiceService)
+        public HomeController(IProvidedServiceService providedServiceService, IAdvertisementService advertisementService)
         {
             _providedServiceService = providedServiceService;
+            _advertisementService = advertisementService;
         }
 
         public async Task<IActionResult> Index()

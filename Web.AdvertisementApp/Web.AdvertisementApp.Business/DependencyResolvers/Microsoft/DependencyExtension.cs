@@ -17,12 +17,7 @@ namespace Web.AdvertisementApp.Business.DependencyResolvers.Microsoft
     {
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AdvertisementContext>(opt =>
-            {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
-            });
-
-
+           
             services.AddScoped<IUow, Uow>();
 
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
@@ -31,7 +26,6 @@ namespace Web.AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<AdvertisementUpdateDto>, AdvertisementUpdateDtoValidator>();
             services.AddTransient<IValidator<AppUserCreateDto>, AppUserCreateDtoValidator>();
             services.AddTransient<IValidator<AppUserUpdateDto>, AppUserUpdateDtoValidator>();
-            services.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginDtoValidator>();
             services.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
             services.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
 
@@ -40,8 +34,6 @@ namespace Web.AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IGenderService, GenderService>();
         }
-
-        
 
     }
 } 

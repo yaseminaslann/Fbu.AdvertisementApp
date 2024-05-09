@@ -13,13 +13,16 @@ namespace Web.AdvertisementApp.UI.ValidationRules
         public UserCreateModelValidator()
         {
             //CascadeMode = CascadeMode.StopOnFirstFailure;
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Parola boş olamaz");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Parola alanı zorunludur");
             RuleFor(x => x.Password).MinimumLength(3).WithMessage("Parola min 3 karakter olmalıdır");
             RuleFor(x => x.Password).Equal(x => x.ConfirmPassword).WithMessage("Parolalar eşleşmiyor");
-            RuleFor(x => x.Firstname).NotEmpty().WithMessage("Ad boş olamaz");
-            RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyad boş olamaz");
-            RuleFor(x => x.Username).NotEmpty().WithMessage("Kullanıcı adı boş olamaz");
+            RuleFor(x => x.Firstname).NotEmpty().WithMessage("Ad alanı zorunludur");
+            RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyad alanı zorunludur");
+            RuleFor(x => x.Username).NotEmpty().WithMessage("Kullanıcı alanı zorunludur");
             RuleFor(x => x.Username).MinimumLength(3).WithMessage("Kullanıcı min 3 karakter olmalıdır");
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Parolayı Onayla alanı zorunludur");
+            RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Telefon Numarası alanı zorunludur");
+
             RuleFor(x => new
             {
                 x.Username,

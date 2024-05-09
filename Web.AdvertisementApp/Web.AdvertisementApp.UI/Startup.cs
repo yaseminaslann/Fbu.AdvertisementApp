@@ -3,6 +3,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,9 +13,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.AdvertisementApp.Business.DependencyResolvers.Microsoft;
 using Web.AdvertisementApp.Business.Helpers;
+using Web.AdvertisementApp.DataAccess.Contexts;
 using Web.AdvertisementApp.UI.Mappings.AutoMapper;
 using Web.AdvertisementApp.UI.Models;
 using Web.AdvertisementApp.UI.ValidationRules;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace Web.AdvertisementApp.UI
 {
@@ -32,6 +35,12 @@ namespace Web.AdvertisementApp.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<AdvertisementContext>(opt =>
+            {
+                opt.UseNpgsql(Configuration.GetConnectionString("Local"));
+            });
+
             services.AddDependencies(Configuration);
             services.AddTransient<IValidator<UserCreateModel>, UserCreateModelValidator>();
             services.AddControllersWithViews();
