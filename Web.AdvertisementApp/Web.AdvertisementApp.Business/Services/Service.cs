@@ -67,8 +67,9 @@ namespace Web.AdvertisementApp.Business.Services
             var data = await _uow.GetRepository<T>().FindAsync(id);
             if (data == null)
                 return new Response(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
-            await _uow.SaveChangesAsync();
+            
             _uow.GetRepository<T>().Remove(data);
+            await _uow.SaveChangesAsync();
             return new Response(ResponseType.Success);
         }
 

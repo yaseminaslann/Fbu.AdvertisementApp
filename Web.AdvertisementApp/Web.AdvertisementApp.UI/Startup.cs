@@ -18,6 +18,8 @@ using Web.AdvertisementApp.UI.Mappings.AutoMapper;
 using Web.AdvertisementApp.UI.Models;
 using Web.AdvertisementApp.UI.ValidationRules;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Web.AdvertisementApp.Business.Services;
 
 namespace Web.AdvertisementApp.UI
 {
@@ -43,6 +45,18 @@ namespace Web.AdvertisementApp.UI
 
             services.AddDependencies(Configuration);
             services.AddTransient<IValidator<UserCreateModel>, UserCreateModelValidator>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opt => {
+        opt.Cookie.Name = "FBUCookie";
+        opt.Cookie.HttpOnly = true;
+        opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+        opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+        opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+        opt.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/SignIn");
+        opt.LogoutPath = new Microsoft.AspNetCore.Http.PathString("/Account/Logout");
+        opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/AccessDenied");
+    });
+
             services.AddControllersWithViews();
 
             var profiles = ProfileHelper.GetProfiles();
@@ -69,6 +83,8 @@ namespace Web.AdvertisementApp.UI
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

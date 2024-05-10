@@ -10,10 +10,19 @@
     <None Remove="AdvertisementDtos\" />
     <None Remove="AppUserDtos\" />
     <None Remove="GenderDtos\" />
+    <None Remove="AppRoleDtos\" />
+    <None Remove="MilitaryStatusDtos\" />
+    <None Remove="AdvertisementAppUserStatusDtos\" />
+    <None Remove="AdvertisementAppUserDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdvertisementDtos\" />
     <Folder Include="AppUserDtos\" />
     <Folder Include="GenderDtos\" />
+    <Folder Include="AppRoleDtos\" />
+    <Folder Include="MilitaryStatusDtos\" />
+    <Folder Include="AdvertisementAppUserStatusDtos\" />
+    <Folder Include="AdvertisementAppUserDtos\" />
+    <Folder Include="AdvertisementAppUserStatusDtos\" />
   </ItemGroup>
 </Project>

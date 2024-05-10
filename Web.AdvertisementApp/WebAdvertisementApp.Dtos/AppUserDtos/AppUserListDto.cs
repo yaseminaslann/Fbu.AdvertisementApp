@@ -23,5 +23,7 @@ namespace Web.AdvertisementApp.Dtos
 
         public int GenderId { get; set; }
 
+        public GenderListDto Gender { get; set; }
+
     }
 }
