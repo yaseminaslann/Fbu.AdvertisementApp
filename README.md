@@ -1,0 +1,3 @@
+# WEB UYGULAMA GELİŞTİRME - Fbu.AdvertisementApp
+
+Proje, ASP.NET Core tabanlı bir iş ilan uygulamasıdır ve çeşitli modüllerden oluşur. Bu modüller, uygulamanın farklı işlevlerini yerine getiren ayrı katmanlardır. Proje, iş mantığını, veri erişimini, ortak bileşenleri ve kullanıcı ara yüzünü içeren bir yapıdadır. Proje bir yazılım firmasının yönetici(admin) kullanıcılarının iş ilanlarını oluşturduğu, yapılan iş başvurularını görüp başvuru durumlarını seçebildiği ve üyelerin (member) iş başvurularına başvurabileceği bir web sitesini geliştirmeyi hedefleyen uygulamadır. Proje ASP.NET Core ile geliştirilmiş ve PostgreSQL veritabanıyla entegre olarak geliştirilmiştir. Uygulama, modern bir ara yüz tasarımıyla donatılmıştır.
